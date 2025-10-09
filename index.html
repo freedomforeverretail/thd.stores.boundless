@@ -285,22 +285,22 @@
                         
                         // DISPLAY ON MAP: Only Boundless Reserved/Staffed
                         if (owner === CONFIG.OWNER_FILTER && (status === 'reserved' || status === 'staffed')) {
-                            const latQ = parseFloat(row[16]);
-                            const lngR = parseFloat(row[17]);
+                            const latR = parseFloat(row[18]);
+                            const lngS = parseFloat(row[19]);
                             
-                            if (!isNaN(latQ) && !isNaN(lngR)) {
+                            if (!isNaN(latR) && !isNaN(lngS)) {
                                 displayStores.push({
                                     status: row[0]?.toString().trim() || '',
                                     owner: owner,
-                                    retailer: row[8]?.toString().trim() || '',
-                                    storeNumber: row[10]?.toString().trim() || '',
-                                    storeName: row[11]?.toString().trim() || '',
-                                    address: row[12]?.toString().trim() || '',
-                                    city: row[13]?.toString().trim() || '',
-                                    state: row[14]?.toString().trim() || '',
-                                    zip: row[18]?.toString().trim() || '',
-                                    latitude: latQ,
-                                    longitude: lngR
+                                    retailer: row[10]?.toString().trim() || '',
+                                    storeNumber: row[12]?.toString().trim() || '',
+                                    storeName: row[13]?.toString().trim() || '',
+                                    address: row[14]?.toString().trim() || '',
+                                    city: row[15]?.toString().trim() || '',
+                                    state: row[16]?.toString().trim() || '',
+                                    zip: row[20]?.toString().trim() || '',
+                                    latitude: latR,
+                                    longitude: lngS
                                 });
                             }
                         }
