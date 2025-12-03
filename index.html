@@ -235,8 +235,8 @@
                     const row = values[i];
                     
                     if (row.length >= 19) {
-                        const status = row[0]?.toString().trim();
-                        const owner = row[1]?.toString().trim();
+                        const status = row[0]?.toString().trim();      // Column A: Status
+                        const owner = row[1]?.toString().trim();        // Column B: Owner
                         
                         if (owner === CONFIG.OWNER_FILTER) {
                             const statusLower = status.toLowerCase();
@@ -244,7 +244,7 @@
                             if (statusLower === 'reserved') counts.reserved++;
                             else if (statusLower === 'staffed') counts.staffed++;
                             
-                            // Columns Q (16) and R (17) for lat/lng in your sheet
+                            // Column Q (index 16) = Latitude, Column R (index 17) = Longitude
                             const lat = parseFloat(row[16]);
                             const lng = parseFloat(row[17]);
                             
@@ -252,13 +252,13 @@
                                 displayStores.push({
                                     status: status,
                                     owner: owner,
-                                    retailer: row[8]?.toString().trim() || '',
-                                    storeNumber: row[10]?.toString().trim() || '',
-                                    storeName: row[11]?.toString().trim() || '',
-                                    address: row[12]?.toString().trim() || '',
-                                    city: row[13]?.toString().trim() || '',
-                                    state: row[14]?.toString().trim() || '',
-                                    zip: row[18]?.toString().trim() || '',
+                                    retailer: row[8]?.toString().trim() || '',      // Column I: Retailer
+                                    storeNumber: row[10]?.toString().trim() || '',  // Column K: Store No.
+                                    storeName: row[11]?.toString().trim() || '',    // Column L: Store Name
+                                    address: row[12]?.toString().trim() || '',      // Column M: Street
+                                    city: row[13]?.toString().trim() || '',         // Column N: City
+                                    state: row[14]?.toString().trim() || '',        // Column O: State
+                                    zip: row[18]?.toString().trim() || '',          // Column S: Zip
                                     latitude: lat,
                                     longitude: lng
                                 });
