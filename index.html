@@ -161,7 +161,7 @@
                             fillOpacity: 1,
                             strokeColor: '#ffffff',
                             strokeWeight: 1,
-                            scale: 5
+                            scale: 7
                         }
                     });
 
@@ -252,12 +252,12 @@
                                 displayStores.push({
                                     status: status,
                                     owner: owner,
-                                    retailer: row[8]?.toString().trim() || '',      // Column I: Retailer
-                                    storeNumber: row[10]?.toString().trim() || '',  // Column K: Store No.
-                                    storeName: row[11]?.toString().trim() || '',    // Column L: Store Name
-                                    address: row[12]?.toString().trim() || '',      // Column M: Street
-                                    city: row[13]?.toString().trim() || '',         // Column N: City
-                                    state: row[14]?.toString().trim() || '',        // Column O: State
+                                    retailer: row[9]?.toString().trim() || '',      // Column J: Retailer
+                                    storeNumber: row[11]?.toString().trim() || '',  // Column L: Store No.
+                                    storeName: row[12]?.toString().trim() || '',    // Column M: Store Name
+                                    address: row[13]?.toString().trim() || '',      // Column N: Street
+                                    city: row[14]?.toString().trim() || '',         // Column O: City
+                                    state: row[15]?.toString().trim() || '',        // Column P: State
                                     zip: row[19]?.toString().trim() || '',          // Column T: Zip
                                     latitude: lat,
                                     longitude: lng
