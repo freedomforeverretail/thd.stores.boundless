@@ -117,8 +117,13 @@
             };
 
             const zoomToStores = (storeData) => {
-                if (!map || !window.google || storeData.length === 0) return;
+                if (!map || !window.google || storeData.length === 0) {
+                    console.log('⚠️ Cannot zoom - map, google, or stores missing');
+                    return;
+                }
 
+                console.log(`🔍 Zooming to ${storeData.length} stores`);
+                
                 const bounds = new window.google.maps.LatLngBounds();
                 storeData.forEach(store => {
                     bounds.extend({ lat: store.latitude, lng: store.longitude });
@@ -132,12 +137,19 @@
             };
 
             const addMarkersToMap = (storeData) => {
-                if (!map || !window.google) return;
+                if (!map || !window.google) {
+                    console.log('⚠️ Map or Google not ready');
+                    return;
+                }
+
+                console.log(`📍 Adding ${storeData.length} markers to map`);
 
                 markers.forEach(marker => marker.setMap(null));
                 markers = [];
 
-                storeData.forEach(store => {
+                storeData.forEach((store, index) => {
+                    console.log(`Creating marker ${index + 1}:`, store.storeName, store.latitude, store.longitude);
+                    
                     const marker = new window.google.maps.Marker({
                         position: { lat: store.latitude, lng: store.longitude },
                         map: map,
@@ -147,8 +159,8 @@
                             fillColor: getStatusColor(store.status),
                             fillOpacity: 1,
                             strokeColor: '#ffffff',
-                            strokeWeight: 1,
-                            scale: 8
+                            strokeWeight: 2,
+                            scale: 10
                         }
                     });
 
@@ -160,6 +172,7 @@
                     markers.push(marker);
                 });
 
+                console.log(`✅ Created ${markers.length} markers`);
                 zoomToStores(storeData);
             };
 
@@ -276,10 +289,10 @@
             }, [mapLoaded]);
 
             useEffect(() => {
-                if (mapLoaded && filteredStores.length > 0) {
+                if (mapLoaded && stores.length > 0) {
                     addMarkersToMap(filteredStores);
                 }
-            }, [searchTerm, statusFilter, stateFilter]);
+            }, [mapLoaded, stores, searchTerm, statusFilter, stateFilter]);
 
             const filteredStores = useMemo(() => {
                 return stores.filter(store => {
