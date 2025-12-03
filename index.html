@@ -71,6 +71,7 @@
             const [stateFilter, setStateFilter] = useState('all');
             const [selectedStore, setSelectedStore] = useState(null);
             const [drawerOpen, setDrawerOpen] = useState(false);
+            const [initialLoadComplete, setInitialLoadComplete] = useState(false);
             const mapRef = useRef(null);
             const [mapLoaded, setMapLoaded] = useState(false);
 
@@ -173,7 +174,11 @@
                 });
 
                 console.log(`✅ Created ${markers.length} markers`);
-                zoomToStores(storeData);
+                
+                // Only zoom to stores if it's not the initial load OR if filters are active
+                if (initialLoadComplete) {
+                    zoomToStores(storeData);
+                }
             };
 
             const fetchFromGoogleSheets = async () => {
@@ -196,7 +201,10 @@
                     setDashboardCounts(counts);
                     setLastUpdated(new Date());
 
-                    if (mapLoaded) addMarkersToMap(displayStores);
+                    if (mapLoaded) {
+                        addMarkersToMap(displayStores);
+                        setInitialLoadComplete(true);
+                    }
                     
                 } catch (err) {
                     console.error('Error fetching data:', err);
