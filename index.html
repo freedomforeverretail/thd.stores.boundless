@@ -244,9 +244,9 @@
                             if (statusLower === 'reserved') counts.reserved++;
                             else if (statusLower === 'staffed') counts.staffed++;
                             
-                            // Column Q (index 16) = Latitude, Column R (index 17) = Longitude
-                            const lat = parseFloat(row[16]);
-                            const lng = parseFloat(row[17]);
+                            // Column R (index 17) = Latitude, Column S (index 18) = Longitude
+                            const lat = parseFloat(row[17]);
+                            const lng = parseFloat(row[18]);
                             
                             if (!isNaN(lat) && !isNaN(lng)) {
                                 displayStores.push({
@@ -258,7 +258,7 @@
                                     address: row[12]?.toString().trim() || '',      // Column M: Street
                                     city: row[13]?.toString().trim() || '',         // Column N: City
                                     state: row[14]?.toString().trim() || '',        // Column O: State
-                                    zip: row[18]?.toString().trim() || '',          // Column S: Zip
+                                    zip: row[19]?.toString().trim() || '',          // Column T: Zip
                                     latitude: lat,
                                     longitude: lng
                                 });
